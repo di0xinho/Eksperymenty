@@ -1,21 +1,9 @@
-#include <SFML/Graphics.hpp>
+#include "Game.hpp"
+#include "GameConfig.hpp"
 
-int main()
-{
-    auto window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "CMake SFML Project");
-    window.setFramerateLimit(144);
+int main() {
 
-    while (window.isOpen())
-    {
-        while (const std::optional event = window.pollEvent())
-        {
-            if (event->is<sf::Event::Closed>())
-            {
-                window.close();
-            }
-        }
+	Game::Game(SCREEN_WIDTH, SCREEN_HEIGHT, GAME_TITLE);
 
-        window.clear();
-        window.display();
-    }
+	return 0;
 }
