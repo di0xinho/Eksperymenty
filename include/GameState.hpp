@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "Game.hpp"
 #include "State.hpp"
 
 class GameState : public State {

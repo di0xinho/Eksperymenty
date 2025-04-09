@@ -5,11 +5,13 @@
 #include <SFML/Graphics.hpp>
 #include "StateMachine.hpp"
 #include "AssetManager.hpp"
+#include "InputManager.hpp"
 
 struct GameData {
 	sf::RenderWindow window;
 	StateMachine stateMachine;
 	AssetManager assets;
+	InputManager input;
 };
 
 typedef std::shared_ptr<GameData> GameDataRef;

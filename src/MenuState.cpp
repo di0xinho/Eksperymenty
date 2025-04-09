@@ -1,4 +1,5 @@
 #include "MenuState.hpp"
+#include "GameState.hpp"
 #include "GameConfig.hpp"
 #include <iostream>
 
@@ -33,6 +34,11 @@ void MenuState::Init() {
 
 void MenuState::handleInput()
 {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+
+        // Switch To Main Menu
+        this->_data->stateMachine.AddState(StateRef(new GameState(_data)), true);
+    }
 }
 
 void MenuState::update(float dt) {}
