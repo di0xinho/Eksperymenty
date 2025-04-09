@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "State.hpp"
 #include "Game.hpp"
 
@@ -21,5 +22,10 @@ private:
 	sf::Font font;
 	sf::Text title;
 	sf::Text instructions;
+
+	sf::SoundBuffer _menuMusicBuffer;
+
+	sf::Sound _menuMusic;
+	
 
 };

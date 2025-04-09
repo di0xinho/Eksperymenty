@@ -6,6 +6,14 @@ MenuState::MenuState(GameDataRef data) : _data(data) {}
 
 void MenuState::Init() {
 
+    if (!_menuMusicBuffer.loadFromFile(MENU_MUSIC)) {
+        throw std::runtime_error("Nie mozna zaladowac muzyki");
+    }
+    
+    _menuMusic.setBuffer(_menuMusicBuffer);
+    _menuMusic.setLoop(true);
+    _menuMusic.play();
+
     if (!font.loadFromFile(ROBOTO_FONT)) {
         throw std::runtime_error("Nie mozna zaladowac czcionki");
     }

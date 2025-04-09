@@ -1,6 +1,5 @@
 #include "Game.hpp"
 #include "MenuState.hpp"
-
 #include <stdlib.h>
 #include <time.h>
 
@@ -21,8 +20,15 @@ void Game::run()
 	float currentTime = this->_clock.getElapsedTime().asSeconds();
 	float accumulator = 0.0f;
 
-	while (this->_data->window.isOpen())
-	{
+	while (this->_data->window.isOpen()){
+	
+		sf::Event event;
+
+		while (this->_data->window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed)
+				this->_data->window.close();
+		}
+
 		this->_data->stateMachine.ProcessStateChanges();
 
 		newTime = this->_clock.getElapsedTime().asSeconds();
