@@ -59,3 +59,9 @@ void SoundManager::setMusicLoop(const std::string& name, bool loop) {
         musics[name]->setLoop(loop);
     }
 }
+
+void SoundManager::setVolume(const std::string& name, float volume) {
+    if (musics.find(name) != musics.end()) {
+        musics[name]->setVolume(volume);
+    }
+}

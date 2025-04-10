@@ -18,6 +18,7 @@ public:
     void stopAllMusic(); // Dodajemy deklaracjê metody
     void pauseMusic(const std::string& name);
     void setMusicLoop(const std::string& name, bool loop);
+    void setVolume(const std::string& name, float volume);
 
 private:
     std::unordered_map<std::string, sf::SoundBuffer> soundBuffers;

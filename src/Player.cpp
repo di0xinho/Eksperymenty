@@ -12,8 +12,8 @@ Player::Player(GameDataRef data) : _data(data) {
 
 	_playerSprite.setScale(2, 2);
 
-	_playerSprite.setPosition((_data->window.getSize().x / 4) - (_playerSprite.getGlobalBounds().width / 2), (_data->window.getSize().y / 2) - (_playerSprite.getGlobalBounds().height / 2));
-
+	_playerSprite.setPosition((_data->window.getSize().x / 4) - (_playerSprite.getGlobalBounds().width / 2), (_data->window.getSize().y / 2) + (_playerSprite.getGlobalBounds().height / 2));
+	
 	_playerState = PLAYER_STATE_STANDING;
 
 	sf::Vector2f origin = sf::Vector2f(_playerSprite.getGlobalBounds().width / 2, _playerSprite.getGlobalBounds().height / 2);
@@ -54,6 +54,10 @@ void Player::update(float dt) {
 	else if (PLAYER_STATE_RUNNING == _playerState) {
 		_playerSprite.move(0.0f, GRAVITY * dt);
 	}
+}
+
+void Player::setPosition(float x, float y) {
+	_playerSprite.setPosition(x, y);
 }
 
 void Player::jump() {

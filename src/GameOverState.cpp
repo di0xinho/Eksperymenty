@@ -1,44 +1,41 @@
-#include "MenuState.hpp"
+#include "GameOverState.hpp"
 #include "GameState.hpp"
 #include "GameConfig.hpp"
 #include <iostream>
 
-MenuState::MenuState(GameDataRef data) : _data(data) {}
+GameOverState::GameOverState(GameDataRef data) : _data(data) {}
 
-void MenuState::Init() {
+void GameOverState::Init() {
 
-    this->_data->soundManager.loadMusic("menu", MENU_MUSIC);
-    this->_data->soundManager.setMusicLoop("menu", true);
-    this->_data->soundManager.playMusic("menu");
+    this->_data->assets.loadFont("Roboto", ROBOTO_FONT);
 
-    if (!font.loadFromFile(ROBOTO_FONT)) {
-        throw std::runtime_error("Nie mozna zaladowac czcionki");
-    }
+    this->_data->soundManager.loadSound("gameover", GAMEOVER_SOUND);
 
-	title.setFont(font);
-    title.setString("Moja gra platformowa");
+    title.setFont(this->_data->assets.getFont("Roboto"));
+    title.setString("Koniec gry");
     title.setCharacterSize(50);
     title.setFillColor(sf::Color::White);
     title.setPosition(200.0f, 100.0f);
 
     instructions.setFont(font);
-    instructions.setString("Przycisnij ENTER, by przejsc do rozgrywki");
+    instructions.setString("Nacisnij klawisz 'ENTER', aby zaczac jeszcze raz");
     instructions.setCharacterSize(25);
     instructions.setFillColor(sf::Color::White);
     instructions.setPosition(220.0f, 300.0f);
+
+    this->_data->soundManager.playSound("gameover");
 }
 
-void MenuState::handleInput()
+void GameOverState::handleInput()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-        this->_data->soundManager.stopMusic("menu");
         this->_data->stateMachine.AddState(StateRef(new GameState(_data)), true);
     }
 }
 
-void MenuState::update(float dt) {}
+void GameOverState::update(float dt) {}
 
-void MenuState::render(float dt) {
+void GameOverState::render(float dt) {
 
     this->_data->window.clear(sf::Color::Black);
 

@@ -1,5 +1,6 @@
 #include "Land.hpp"
 #include "GameConfig.hpp"
+#include <iostream>
 
 Land::Land(GameDataRef data) : _data(data)
 {

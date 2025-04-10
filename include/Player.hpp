@@ -19,6 +19,8 @@ public:
 
 	void update(float dt);
 
+	void setPosition(float x, float y);
+
 	void run();
 
 	void jump();
