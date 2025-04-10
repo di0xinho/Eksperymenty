@@ -2,6 +2,9 @@
 #include <SFML/Audio.hpp>
 #include "Game.hpp"
 #include "State.hpp"
+#include "Player.hpp"
+#include "Land.hpp"
+#include "Platform.hpp"
 
 class GameState : public State {
 public:
@@ -20,7 +23,14 @@ public:
 private:
 
 	GameDataRef _data;
-	sf::RectangleShape player;
+
+	sf::Sprite _background;
+	
+	Player* player;
+	Land* land;
+	Platform* platform;
+	
+	int _gameState;
 
 	int _score;
 	int _lives;
