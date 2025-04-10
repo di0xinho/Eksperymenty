@@ -2,6 +2,7 @@
 
 #include "GameState.hpp"
 #include "GameConfig.hpp"
+#include "PauseState.hpp"
 #include "MoveLeftCommand.hpp"
 #include "MoveRightCommand.hpp"
 #include <iostream>
@@ -18,17 +19,33 @@ void GameState::Init()
     }
 
     _gameMusic.setBuffer(_gameMusicBuffer);
+    _gameMusic.setVolume(100.f);
     _gameMusic.setLoop(true);
     _gameMusic.play();
 
     _score = 0;
+    _lives = 3;
+
 
    /* if (!font.loadFromFile(ROBOTO_FONT)) {
         throw std::runtime_error("Nie mozna zaladowac czcionki");
     }*/
 }
 
+void GameState::resume() {
+    _gameMusic.setVolume(100.f);
+}
+
+void GameState::pause() {
+    _gameMusic.setVolume(50.f);
+}
+
 void GameState::handleInput() {
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)) {
+        
+        this->_data->stateMachine.AddState(StateRef(new PauseState(_data)), false);
+    }
 
     // SprawdŸ wciœniête klawisze i wywo³aj przypisane komendy
     for (auto key : { sf::Keyboard::Left, sf::Keyboard::Right }) {

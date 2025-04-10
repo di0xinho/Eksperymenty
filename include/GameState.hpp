@@ -14,6 +14,9 @@ public:
 	void update(float dt);
 	void render(float dt);
 
+	void pause() override;
+	void resume() override;
+
 private:
 
 	GameDataRef _data;

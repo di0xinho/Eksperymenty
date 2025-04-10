@@ -6,12 +6,14 @@
 #include "StateMachine.hpp"
 #include "AssetManager.hpp"
 #include "InputManager.hpp"
+#include "SoundManager.hpp"
 
 struct GameData {
 	sf::RenderWindow window;
 	StateMachine stateMachine;
 	AssetManager assets;
 	InputManager input;
+	SoundManager soundManager;
 };
 
 typedef std::shared_ptr<GameData> GameDataRef;

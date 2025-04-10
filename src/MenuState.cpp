@@ -11,9 +11,13 @@ void MenuState::Init() {
         throw std::runtime_error("Nie mozna zaladowac muzyki");
     }
     
-    _menuMusic.setBuffer(_menuMusicBuffer);
+    /*_menuMusic.setBuffer(_menuMusicBuffer);
     _menuMusic.setLoop(true);
-    _menuMusic.play();
+    _menuMusic.play();*/
+
+    this->_data->soundManager.loadMusic("menu", MENU_MUSIC);
+    this->_data->soundManager.setMusicLoop("menu", true);
+    this->_data->soundManager.playMusic("menu");
 
     if (!font.loadFromFile(ROBOTO_FONT)) {
         throw std::runtime_error("Nie mozna zaladowac czcionki");
@@ -35,8 +39,7 @@ void MenuState::Init() {
 void MenuState::handleInput()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-
-        // Switch To Main Menu
+        this->_data->soundManager.stopMusic("menu");
         this->_data->stateMachine.AddState(StateRef(new GameState(_data)), true);
     }
 }

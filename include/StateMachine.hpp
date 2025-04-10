@@ -19,7 +19,7 @@ public:
 	void ProcessStateChanges();
 
 	StateRef& GetActiveState();
-
+	
 private:
 	std::stack<StateRef> _states;
 	StateRef _newState;
